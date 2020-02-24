@@ -98,9 +98,6 @@ AC_SUBST([CRYPTO_LIBS])
 
 AX_CHECK_ZLIB(,[AC_MSG_ERROR([Could not find Zlib support])])
 
-if test x$HAVE_WBCLIENT != x; then
-    AM_CHECK_WBCLIENT
-fi
 
 if test x$HAVE_NLS != x; then
     AC_CHECK_FUNC(dgettext, [],
