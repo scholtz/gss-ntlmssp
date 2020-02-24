@@ -52,7 +52,6 @@ WITH_DISTRO_VERSION
 WITH_TEST_DIR
 WITH_MANPAGES
 WITH_XML_CATALOG
-WITH_WBCLIENT
 
 m4_include([external/pkg.m4])
 m4_include([external/docbook.m4])
@@ -60,7 +59,6 @@ m4_include([external/sizes.m4])
 m4_include([external/ax_pthread.m4])
 m4_include([external/m4_ax_check_openssl.m4])
 m4_include([external/ax_check_zlib.m4])
-m4_include([external/wbclient.m4])
 
 AX_PTHREAD(,[AC_MSG_ERROR([Could not find Pthreads support])])
 
