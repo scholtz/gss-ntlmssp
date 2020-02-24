@@ -96,7 +96,7 @@ dist_noinst_HEADERS = \
     src/ntlm_common.h \
     src/ntlm.h \
     src/debug.h \
-    src/gss_ntlmssp.h \
+    src/gss_ntlmssp.h
 
 gssapidir = $(includedir)/gssapi
 dist_gssapi_HEADERS = \
