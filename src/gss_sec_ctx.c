@@ -1274,6 +1274,7 @@ static uint32_t gssntlm_sspi_session_key(uint32_t *minor_status,
     gss_buffer_desc session_key_buf;
 
     if (ctx->exported_session_key.length == 0) {
+      printf("Error: ctx->exported_session_key.length == 0");
       return GSSERRS(ERR_NOTAVAIL, GSS_S_UNAVAILABLE);
     }
 
