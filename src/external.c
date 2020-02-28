@@ -2,6 +2,7 @@
 
 #include "config.h"
 #include <errno.h>
+#include <stdio.h>
 #include "gss_ntlmssp.h"
 
 #if HAVE_WBCLIENT
@@ -13,7 +14,11 @@ uint32_t external_netbios_get_names(char **computer, char **domain)
 #if HAVE_WBCLIENT
     return winbind_get_names(computer, domain);
 #else
-    return ERR_NOTAVAIL;
+	FILE *fp;
+   fp = fopen("/tmp/gss-debug.log", "a+");
+   fprintf(fp, "external_netbios_get_names\n");
+   fclose(fp);
+   return ERR_NOTAVAIL;
 #endif
 }
 
@@ -23,6 +28,10 @@ uint32_t external_get_creds(struct gssntlm_name *name,
 #if HAVE_WBCLIENT
     return winbind_get_creds(name, cred);
 #else
+	FILE *fp;
+   fp = fopen("/tmp/gss-debug.log", "a+");
+   fprintf(fp, "external_get_creds\n");
+   fclose(fp);
     return ERR_NOTAVAIL;
 #endif
 }
@@ -40,6 +49,10 @@ uint32_t external_cli_auth(struct gssntlm_ctx *ctx,
                             &ctx->nego_msg, &ctx->chal_msg, &ctx->auth_msg,
                             &ctx->exported_session_key);
 #else
+	FILE *fp;
+   fp = fopen("/tmp/gss-debug.log", "a+");
+   fprintf(fp, "external_cli_auth\n");
+   fclose(fp);
     return ERR_NOTAVAIL;
 #endif
 }
@@ -75,6 +88,10 @@ uint32_t external_srv_auth(struct gssntlm_ctx *ctx,
                             ctx->workstation, chal_ptr,
                             nt_chal_resp, lm_chal_resp, session_base_key);
 #else
+	FILE *fp;
+   fp = fopen("/tmp/gss-debug.log", "a+");
+   fprintf(fp, "external_srv_auth\n");
+   fclose(fp);
     return ERR_NOTAVAIL;
 #endif
 }

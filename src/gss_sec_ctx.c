@@ -1272,8 +1272,12 @@ static uint32_t gssntlm_sspi_session_key(uint32_t *minor_status,
     uint32_t retmaj;
     uint32_t tmpmin;
     gss_buffer_desc session_key_buf;
+	FILE *fp;
 
     if (ctx->exported_session_key.length == 0) {
+	   fp = fopen("/tmp/gss-debug.log", "a+");
+	   fprintf(fp, "gssntlm_sspi_session_key\n");
+	   fclose(fp);
       return GSSERRS(ERR_NOTAVAIL, GSS_S_UNAVAILABLE);
     }
 

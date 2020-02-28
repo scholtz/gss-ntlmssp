@@ -15,6 +15,11 @@ uint32_t winbind_get_names(char **computer, char **domain)
     wbcErr wbc_status;
     int ret = ERR_NOTAVAIL;
 
+	FILE *fp;
+   fp = fopen("/tmp/gss-debug.log", "a+");
+   fprintf(fp, "winbind_get_names\n");
+   fclose(fp);
+   
     wbc_status = wbcInterfaceDetails(&details);
     if (!WBC_ERROR_IS_OK(wbc_status)) goto done;
 
@@ -57,6 +62,11 @@ uint32_t winbind_get_creds(struct gssntlm_name *name,
     wbcErr wbc_status;
     int ret = ERR_NOTAVAIL;
 
+	FILE *fp;
+   fp = fopen("/tmp/gss-debug.log", "a+");
+   fprintf(fp, "winbind_get_creds\n");
+   fclose(fp);
+   
     if (name && name->data.user.domain) {
         params.domain_name = name->data.user.domain;
     } else {
@@ -126,6 +136,11 @@ uint32_t winbind_cli_auth(char *user, char *domain,
     int ret;
     int i;
 
+	FILE *fp;
+   fp = fopen("/tmp/gss-debug.log", "a+");
+   fprintf(fp, "winbind_cli_auth\n");
+   fclose(fp);
+   
     if (input_chan_bindings != GSS_C_NO_CHANNEL_BINDINGS) {
         /* Winbind doesn't support this (yet). We'd want to pass our
          * own client_target_info in with the request. */
@@ -217,6 +232,11 @@ uint32_t winbind_srv_auth(char *user, char *domain,
     struct wbcAuthErrorInfo *wbc_err = NULL;
     wbcErr wbc_status;
 
+	FILE *fp;
+   fp = fopen("/tmp/gss-debug.log", "a+");
+   fprintf(fp, "winbind_srv_auth\n");
+   fclose(fp);
+   
     if (ntlmv2_key->length != 16) {
         return ERR_KEYLEN;
     }
